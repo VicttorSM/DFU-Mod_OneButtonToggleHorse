@@ -1,19 +1,17 @@
 {
-    "Version": "1.0",
+    "Version": "1.0.0",
     "Sections": [
         {
             "Name": "Options",
-            "Description": "Options And Preferences For This Mod.",
+            "Description": "Select the keycode you wish to toggle the mount",
             "IsAdvanced": false,
             "Keys": [
                 {
-                    "Min": 1,
-                    "Max": 100,
-                    "Value": 12,
-                    "Name": "TimeScale",
-                    "Description": "Default = 12 || 1 = Each Minute Equals 1 Real-life Minute || 60 = Each Minute Equals 1 Real-life Second",
+                    "Value": "G",
+                    "Name": "Toggle Horse Keycode",
+                    "Description": "Mouse0: Left click -- Mouse1: Right click -- Mouse2: Middle mouse button -- Mouse3 to Mouse9: Additional mouse buttons",
                     "$version": "v1",
-                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderIntKey"
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.TextKey"
                 }
             ],
             "$version": "v1"

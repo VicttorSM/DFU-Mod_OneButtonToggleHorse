@@ -4,7 +4,7 @@
 // Author:          VicttorSM
 // Created On: 	    03/11/2024, 03:00 AM
 // Last Edit:		03/11/2024, 03:00 AM
-// Version:			1.00
+// Version:			1.0.0
 // Special Thanks:  
 // Modifier:			
 
@@ -12,6 +12,7 @@ using UnityEngine;
 using DaggerfallWorkshop.Game;
 using DaggerfallWorkshop.Game.Utility.ModSupport;
 using System;
+using UnityEngine.UIElements;
 
 namespace OneButtonToggleHorse
 {
@@ -21,11 +22,11 @@ namespace OneButtonToggleHorse
 
         public static OneButtonToggleHorse Instance
         {
-            get { return instance ?? (instance = FindObjectOfType<OneButtonToggleHorse>()); }
+            get { return instance != null ? instance : (instance = FindObjectOfType<OneButtonToggleHorse>()); }
         }
 
         static Mod mod;
-        private KeyCode toggleKey = KeyCode.Mouse3;
+        private KeyCode toggleKey = KeyCode.G;
 
         [Invoke(StateManager.StateTypes.Start, 0)]
         public static void Init(InitParams initParams)
@@ -50,25 +51,31 @@ namespace OneButtonToggleHorse
             }
         }
 
-
         private void Start()
         {
-            Debug.Log("Begin mod init: One Button Toggle Horse");
+            // Captures the mod settings defined by the player
+            var settings = mod.GetSettings();
+            string keyName = settings.GetValue<string>("Options", "Toggle Horse Keycode");
 
-            //string keyName = "Mouse4";
-            //var key = (KeyCode)Enum.Parse(typeof(KeyCode), keyName);
+            // Tries to parse the Key informed by the player to KeyCode
+            Enum.TryParse<KeyCode>(keyName, out KeyCode newKeyCode);
 
-            //if (Enum.IsDefined(typeof(KeyCode), key))
-            //{
-            //    toggleKey = key;
-            //    DaggerfallUI.AddHUDText($"New key to toggle mount: '{keyName}'");
-            //}
-            //else
-            //{
-            //    DaggerfallUI.AddHUDText($"New key to toggle mount could not be processed! Falling back to 'Mouse3'");
-            //}
+            // If it fails to parse the first time, tries to parse again using uppercase on the keyName
+            if (newKeyCode == KeyCode.None)
+            {
+                Enum.TryParse<KeyCode>(keyName.ToUpper(), out newKeyCode);
+            }
 
-            Debug.Log("Finished mod init: One Button Toggle Horse");
+            if (newKeyCode == KeyCode.None)
+            {
+                // Notifies player if it was not able to find the KeyCode
+                DaggerfallUI.AddHUDText($"'OneButtonToggleHorse': '{keyName}' was not a valid KeyCode, falling back to '{toggleKey}'");
+            }
+            else
+            {
+                // Assigns the new key to toggle the mount
+                toggleKey = newKeyCode;
+            }
         }
     }
 }
