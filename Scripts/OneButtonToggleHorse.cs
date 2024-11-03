@@ -11,6 +11,7 @@
 using UnityEngine;
 using DaggerfallWorkshop.Game;
 using DaggerfallWorkshop.Game.Utility.ModSupport;
+using System;
 
 namespace OneButtonToggleHorse
 {
@@ -24,6 +25,7 @@ namespace OneButtonToggleHorse
         }
 
         static Mod mod;
+        private KeyCode toggleKey = KeyCode.Mouse3;
 
         [Invoke(StateManager.StateTypes.Start, 0)]
         public static void Init(InitParams initParams)
@@ -34,11 +36,37 @@ namespace OneButtonToggleHorse
             mod.IsReady = true;
         }
 
+        private void Update()
+        {
+            if (GameManager.Instance.StateManager.CurrentState == StateManager.StateTypes.Game)
+            {
+                if (Input.GetKeyDown(toggleKey))
+                {
+                    if (!GameManager.Instance.IsPlayerInside && GameManager.Instance.PlayerController.isGrounded)
+                    {
+                        GameManager.Instance.TransportManager.ToggleMount();
+                    }
+                }
+            }
+        }
+
+
         private void Start()
         {
             Debug.Log("Begin mod init: One Button Toggle Horse");
 
-            // Do stuff
+            //string keyName = "Mouse4";
+            //var key = (KeyCode)Enum.Parse(typeof(KeyCode), keyName);
+
+            //if (Enum.IsDefined(typeof(KeyCode), key))
+            //{
+            //    toggleKey = key;
+            //    DaggerfallUI.AddHUDText($"New key to toggle mount: '{keyName}'");
+            //}
+            //else
+            //{
+            //    DaggerfallUI.AddHUDText($"New key to toggle mount could not be processed! Falling back to 'Mouse3'");
+            //}
 
             Debug.Log("Finished mod init: One Button Toggle Horse");
         }

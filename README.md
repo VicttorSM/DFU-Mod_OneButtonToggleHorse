@@ -1,2 +1,2 @@
 # DFU-Mod_OneButtonToggleHorse
- Allows to change to the horse or wagon with only one button
+Allows changing to horse or wagon and then back to on foot with only one button

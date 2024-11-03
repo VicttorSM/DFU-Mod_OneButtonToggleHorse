@@ -1,14 +1,13 @@
 {
-    "ModTitle": "LockedLootContainers",
-    "ModVersion": "1.00",
-    "ModAuthor": "Kirk.O",
-    "ContactInfo": "kirkoliveri@gmail.com",
-    "DFUnity_Version": "0.14.4",
-    "ModDescription": "Replaces Some Generated Loot Containers With Locked And Sometimes Even Trapped Chests.",
-    "GUID": "13001a8b-9126-4835-8423-33e0c022787f",
+    "ModTitle": "One Button Toggle Horse",
+    "ModVersion": "1.0.0",
+    "ModAuthor": "VicttorSM",
+    "DFUnity_Version": "1.1.1",
+    "ModDescription": "Allows changing to horse or wagon and then back to on foot with only one button",
+    "GUID": "ff9dc7f9-8d17-4924-8eaa-d8b104e57332",
     "Files": [
-        "Assets/Game/Mods/DFU-Mod_Locked-Loot-Containers/Scripts/LockedLootContainersMain.cs",
-        "Assets/Game/Mods/DFU-Mod_Locked-Loot-Containers/modsettings.json"
-    ],
-    "Dependencies": []
+        "Assets/Game/Mods/DFU-Mod_OneButtonToggleHorse/modsettings.json",
+        "Assets/Game/Mods/DFU-Mod_OneButtonToggleHorse/Scripts/OneButtonToggleHorse.cs",
+        "Assets/Game/Mods/DFU-Mod_OneButtonToggleHorse/OneButtonToggleHorse.dfmod.json"
+    ]
 }
